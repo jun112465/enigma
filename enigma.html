@@ -3,6 +3,32 @@
         <title>
             ENIGMA
         </title>
+        <style>
+            #rotors{
+                display: flex;
+                background-color: brown;
+                width: 300px;
+                height: 200px;
+                padding: 10px;
+            }
+            .r{
+                flex-grow: 1;
+                flex-direction: row;
+                background-color: white;
+                margin:10px;
+            }
+            .r > div {
+                text-align: center;
+                height: 33%;
+                line-height: 60px;
+            }
+            .r-1{
+                border-bottom: 1px solid black;
+            }
+            .r-2{
+                border-bottom: 1px solid black;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -20,7 +46,21 @@
         <article>
             rotors
             <div id="rotors">
-
+                <div class="r" id="r1">
+                    <div class="r-1">A</div>
+                    <div class="r-2">B</div>
+                    <div class="r-3">C</div>
+                </div>
+                <div class="r" id="r2">
+                    <div class="r-1">A</div>
+                    <div class="r-2">B</div>
+                    <div class="r-3">C</div>
+                </div>
+                <div class="r" id="r3">
+                    <div class="r-1">A</div>
+                    <div class="r-2">B</div>
+                    <div class="r-3">C</div>
+                </div>
             </div>
             lampboard
             <div id="lampboard">
