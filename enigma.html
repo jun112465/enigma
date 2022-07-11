@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>
+            ENIGMA
+        </title>
+    </head>
+    <body>
+        <header>
+            <h1>Enigma</h1>
+            <h4>
+                에니그마는 독일이 2차 세계대전에 사용한 암호화 기계로 송신자와 수신자간에 규칙을 통해 서로 암호를 교환하는 방식을 사용한다.
+            </h4>
+            <ul>
+                <li>각 날짜마다 초기 세팅을 위한 설정을 배포받는다</li>
+                <li>송신자가 초기 세팅을 한다</li>
+                <li>송신자가 원하는 세글자 단어를 선정 해, 그 단어로 다시 초기 세팅을 한다</li>
+                <li>(초기 세팅으로 암호화)송신자가 선정한 단어 * 2 + (송신자가 선정한 단어로 암호화)메세지 를 수신자에게 전송한다</li>
+            </ul>
+        </header>
+        <article>
+            rotors
+            <div id="rotors">
+
+            </div>
+            lampboard
+            <div id="lampboard">
+
+            </div>
+        </article>
+    </body>
+    <script>
+
+        //create lampboard
+        let lampboard = document.getElementById("lampboard")
+        let lampboard_btns = []
+        for(let i=0; i<26; i++){
+            lampboard_btns[i] = document.createElement("button")
+            lampboard_btns[i].innerText = String.fromCharCode('A'.charCodeAt()+i)
+            lampboard.appendChild(lampboard_btns[i])
+            console.log(lampboard_btns[i].innerText)
+        }
+    </script>
+</html>
