@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/71198630/179070032-4646db54-b372-44d7-b63a-268239ccd5ec.png)
+
+
 # 변수 내용 정리
 
 ptr_r1
