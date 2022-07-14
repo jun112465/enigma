@@ -6,10 +6,13 @@
         <style>
 
             article{
+                text-align: center;
+                justify-content: center;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 background-color: rgb(79, 26, 26);
+                width: 800px;
             }
             #rotors{
                 display: flex;
@@ -30,6 +33,9 @@
                 height: 33%;
                 line-height: 60px;
                 border: 1px solid black;
+                font-weight: bold;
+                font-size: 30px;
+                background-color: rgb(187, 187, 187);
             }
             .r-1{
                 border-bottom: 1px solid black;
@@ -54,19 +60,18 @@
                 justify-content: center;
             }
 
-            #reflector{
+            .keyboard{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 background-color: brown;
-                padding: 10px;
+                padding: 10px; 
             }
-
-            #reflector > div{
+            .keyboard > div{
                 display: flex;
                 flex-direction: row;
             }
-            #reflector > div > div{
+            .keyboard > div > div {
                 border: 2px solid black;
                 width: 40px; 
                 height: 40px;
@@ -79,6 +84,25 @@
                 font-weight: 700;
                 border-radius: 50%;
             }
+
+            #lamp > div > div{
+                /* background-color: */
+                background-color:lemonchiffon
+            }
+
+            #input{
+                border-top: 3px solid black;
+            }
+
+            #reflector{
+                border: 5px solid black;
+                background-color: rgb(60, 6, 6);
+            }
+            #reflector > div > div{
+                width: 30px;
+                height: 30px;
+            }
+            
         </style>
     </head>
     <body>
@@ -93,6 +117,23 @@
                 <li>송신자가 원하는 세글자 단어를 선정 해, 그 단어로 다시 초기 세팅을 한다</li>
                 <li>(초기 세팅으로 암호화)송신자가 선정한 단어 * 2 + (송신자가 선정한 단어로 암호화)메세지 를 수신자에게 전송한다</li>
             </ul>
+            <h3>
+                해당 토이 프로젝트에서 회전자의 순서를 단순히 A-Z를 연속으로 나열한 순서지만 실제 전쟁에서 사용했던 회전자는 매우 복잡하게 순서가 뒤바껴있었다.
+                <h5>출처 - 나무위키 (https://namu.wiki/w/%EC%97%90%EB%8B%88%EA%B7%B8%EB%A7%88(%EA%B8%B0%EA%B3%84)) </h5>
+                <h4>당시 회전자의 종류</h4>
+                <ul>
+                    <li>EKMFLGDQVZNTOWYHXUSPAIBRCJ</li>
+                    <li>AJDKSIRUXBLHWTMCQGZNPYFVOE</li>
+                    <li>BDFHJLCPRTXVZNYEIWGAKMUSQO</li>
+                    <li>ESOVPZJAYQUIRHXLNFTGKDCMWB</li>
+                    <li>VZBRGITYUPSDNHLXAWMJQOFECK</li>
+                    <li>JPGVOUMFYQBENHZRDKASXLICTW</li>
+                    <li>NZJHGRCXMYSWBOUFAIVLPEKQDT</li>
+                    <li>FKQHTLXOCBJSPDZRAMEWNIUYGV</li>
+                </ul>
+            </h3>
+
+            <img src="https://t1.daumcdn.net/cfile/tistory/991C5A405BFBA44507" alt="" srcset="">
         </header>
         <article>
             rotors
@@ -131,8 +172,80 @@
 
             </div>
 
-            reflector
-            <div id="reflector">
+            <div class='keyboard' id="lamp">
+                <div>
+                    <div id="Q">Q</div>
+                    <div id="W">W</div>
+                    <div id="E">E</div>
+                    <div>R</div>
+                    <div>T</div>
+                    <div>Y</div>
+                    <div>U</div>
+                    <div>I</div>
+                    <div>O</div>
+                    <div>P</div>
+                </div>
+                <div>
+                    <div>A</div>
+                    <div>S</div>
+                    <div>D</div>
+                    <div>F</div>
+                    <div>G</div>
+                    <div>H</div>
+                    <div>J</div>
+                    <div>K</div>
+                    <div>L</div>
+                </div>
+                <div>
+                    <div>Z</div>
+                    <div>X</div>
+                    <div>C</div>
+                    <div>V</div>
+                    <div>B</div>
+                    <div>N</div>
+                    <div>M</div>
+                </div>
+            </div>
+
+
+            <div class='keyboard' id="input">
+                <div>
+                    <div>Q</div>
+                    <div>W</div>
+                    <div>E</div>
+                    <div>R</div>
+                    <div>T</div>
+                    <div>Y</div>
+                    <div>U</div>
+                    <div>I</div>
+                    <div>O</div>
+                    <div>P</div>
+                </div>
+                <div>
+                    <div>A</div>
+                    <div>S</div>
+                    <div>D</div>
+                    <div>F</div>
+                    <div>G</div>
+                    <div>H</div>
+                    <div>J</div>
+                    <div>K</div>
+                    <div>L</div>
+                </div>
+                <div>
+                    <div>Z</div>
+                    <div>X</div>
+                    <div>C</div>
+                    <div>V</div>
+                    <div>B</div>
+                    <div>N</div>
+                    <div>M</div>
+                </div>
+            </div>
+
+            <!-- <input type="text" name="" id="inputboard"> -->
+
+            <div class='keyboard' id="reflector">
                 <div>
                     <div>Q</div>
                     <div>W</div>
@@ -303,9 +416,30 @@
             }
         }
 
+        // lamp 
+        let lamp = document.getElementById('lamp')
+        for(let i=0; i<lamp.children.length; i++){
+            for(let j=0; j<lamp.children[i].childElementCount; j++){
+                lamp.children[i].children[j].id = lamp.children[i].children[j].innerText
+            }
+        }
+        // input keyboard
+        let input = document.getElementById('input')
+        for(let i=0; i<input.children.length; i++){
+            for(let j=0; j<input.children[i].childElementCount; j++){
+                let p = input.children[i].children[j].innerText;
+                let lampBtn = document.getElementById(p)
 
-
-        // 
+                input.children[i].children[j].addEventListener('mousedown', ()=>{
+                    input.children[i].children[j].style.backgroundColor = 'grey'
+                    lampBtn.style.backgroundColor = 'orange'
+                })
+                input.children[i].children[j].addEventListener('mouseup', ()=>{
+                    input.children[i].children[j].style.backgroundColor = 'white'
+                    lampBtn.style.backgroundColor = 'lemonchiffon'
+                })
+            }
+        }
  
     </script>
 </html>
