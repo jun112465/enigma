@@ -4,15 +4,23 @@
             ENIGMA
         </title>
         <style>
+
+            article{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: rgb(79, 26, 26);
+            }
             #rotors{
                 display: flex;
                 background-color: brown;
-                width: 300px;
+                width: 600px;
                 height: 200px;
                 padding: 10px;
             }
             .r{
-                flex-grow: 1;
+                /* flex-grow: 1;   */
+                flex: 1;
                 flex-direction: row;
                 background-color: white;
                 margin:10px;
@@ -21,12 +29,55 @@
                 text-align: center;
                 height: 33%;
                 line-height: 60px;
+                border: 1px solid black;
             }
             .r-1{
                 border-bottom: 1px solid black;
             }
             .r-2{
                 border-bottom: 1px solid black;
+            }
+
+            #arrow{
+                display: inline-block;
+                position: relative;
+                background-color: lightgray;
+                top: 45%;
+                padding: 2px;
+                height: 15px;
+            }
+
+            .wheel{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #reflector{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: brown;
+                padding: 10px;
+            }
+
+            #reflector > div{
+                display: flex;
+                flex-direction: row;
+            }
+            #reflector > div > div{
+                border: 2px solid black;
+                width: 40px; 
+                height: 40px;
+                margin: 5px;
+                background-color: white;
+                padding: 5px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 21px;
+                font-weight: 700;
+                border-radius: 50%;
             }
         </style>
     </head>
@@ -46,25 +97,74 @@
         <article>
             rotors
             <div id="rotors">
+                <div id="arrow">➡︎</div>
                 <div class="r" id="r1">
-                    <div class="r-1">A</div>
-                    <div class="r-2">B</div>
-                    <div class="r-3">C</div>
+                    <div id="r1_1">A</div>
+                    <div id="r1_2">B</div>
+                    <div id="r1_3">C</div>
+                </div>
+                <div class="wheel" id="w1">
+                    <input id=w1_up type="button" value="⬆" >
+                    <input id=w1_down type="button" value="⬇︎">
                 </div>
                 <div class="r" id="r2">
-                    <div class="r-1">A</div>
-                    <div class="r-2">B</div>
-                    <div class="r-3">C</div>
+                    <div id="r2_1">Z</div>
+                    <div id="r2_2">B</div>
+                    <div id="r2_3">C</div>
+                </div>
+                <div class="wheel" id="w2">
+                    <input id=w2_up type="button" value="⬆">
+                    <input id=w2_down type="button" value="⬇︎">
                 </div>
                 <div class="r" id="r3">
-                    <div class="r-1">A</div>
-                    <div class="r-2">B</div>
-                    <div class="r-3">C</div>
+                    <div id="r3_1">A</div>
+                    <div id="r3_2">B</div>
+                    <div id="r3_3">C</div>
+                </div>
+                <div class="wheel" id="w3">
+                    <input id=w3_up type="button" value="⬆">
+                    <input id=w3_down type="button" value="⬇︎">
                 </div>
             </div>
             lampboard
             <div id="lampboard">
 
+            </div>
+
+            reflector
+            <div id="reflector">
+                <div>
+                    <div>Q</div>
+                    <div>W</div>
+                    <div>E</div>
+                    <div>R</div>
+                    <div>T</div>
+                    <div>Y</div>
+                    <div>U</div>
+                    <div>I</div>
+                    <div>O</div>
+                    <div>P</div>
+                </div>
+                <div>
+                    <div>A</div>
+                    <div>S</div>
+                    <div>D</div>
+                    <div>F</div>
+                    <div>G</div>
+                    <div>H</div>
+                    <div>J</div>
+                    <div>K</div>
+                    <div>L</div>
+                </div>
+                <div>
+                    <div>Z</div>
+                    <div>X</div>
+                    <div>C</div>
+                    <div>V</div>
+                    <div>B</div>
+                    <div>N</div>
+                    <div>M</div>
+                </div>
             </div>
         </article>
     </body>
@@ -79,5 +179,133 @@
             lampboard.appendChild(lampboard_btns[i])
             console.log(lampboard_btns[i].innerText)
         }
+
+        // add pointers to each rotors
+        let r = []
+        for(let i=0; i<26; i++){
+            r[i] = String.fromCharCode('A'.charCodeAt()+i)
+        }
+        let ptr_r1 = 0
+        let ptr_r2 = 0
+        let ptr_r3 = 0
+
+        // rotor variables 
+        let r1_1 = document.getElementById("r1_1")
+        let r1_2 = document.getElementById("r1_2")
+        let r1_3 = document.getElementById("r1_3")
+
+        let r2_1 = document.getElementById("r2_1")
+        let r2_2 = document.getElementById("r2_2")
+        let r2_3 = document.getElementById("r2_3")
+
+        let r3_1 = document.getElementById("r3_1")
+        let r3_2 = document.getElementById("r3_2")
+        let r3_3 = document.getElementById("r3_3")
+
+        // add wheel event listener 
+        let upWheel = (ptr)=>{
+            return ptr==0 ? 25 : ptr-1
+        }
+        let downWheel = (ptr)=>{
+            return ptr==25 ? 0 : ptr+1
+        }
+        
+        let update = ()=>{
+            r1_1.innerText = ptr_r1==0 ? 'Z' : String.fromCharCode('A'.charCodeAt()+ptr_r1-1)
+            r1_2.innerText = String.fromCharCode('A'.charCodeAt()+ptr_r1)  
+            r1_3.innerText = ptr_r1==25 ? 'A' : String.fromCharCode('A'.charCodeAt()+ptr_r1+1)
+
+            r2_1.innerText = ptr_r2==0 ? 'Z' : String.fromCharCode('A'.charCodeAt()+ptr_r2-1)
+            r2_2.innerText = String.fromCharCode('A'.charCodeAt()+ptr_r2)  
+            r2_3.innerText = ptr_r2==25 ? 'A' : String.fromCharCode('A'.charCodeAt()+ptr_r2+1)
+
+            r3_1.innerText = ptr_r3==0 ? 'Z' : String.fromCharCode('A'.charCodeAt()+ptr_r3-1)
+            r3_2.innerText = String.fromCharCode('A'.charCodeAt()+ptr_r3)  
+            r3_3.innerText = ptr_r3==25 ? 'A' : String.fromCharCode('A'.charCodeAt()+ptr_r3+1)
+        }
+
+        let w1_up = document.getElementById("w1_up")
+        let w1_down = document.getElementById("w1_down")
+        w1_up.addEventListener('click', ()=>{
+            ptr_r1 = upWheel(ptr_r1)
+            update()
+        })
+        w1_down.addEventListener('click', ()=>{
+            ptr_r1 = downWheel(ptr_r1)
+            update()
+        })
+
+        let w2_up = document.getElementById("w2_up")
+        let w2_down = document.getElementById("w2_down")
+        w2_up.addEventListener('click', ()=>{
+            ptr_r2 = upWheel(ptr_r2)
+            update()
+        })
+        w2_down.addEventListener('click', ()=>{
+            ptr_r2 = downWheel(ptr_r2)
+            update()
+        })
+
+
+
+        let w3_up = document.getElementById("w3_up")
+        let w3_down = document.getElementById("w3_down")
+        w3_up.addEventListener('click', ()=>{
+            ptr_r3 = upWheel(ptr_r3)
+            update()
+        })
+        w3_down.addEventListener('click', ()=>{
+            ptr_r3 = downWheel(ptr_r3)
+            update()
+        })
+
+        update()
+
+
+        //reflector
+
+        let reflector = document.getElementById("reflector")
+        let refArr = []
+        let tmp = [] // max 2
+        function generateRandomCode() {
+            let myRandomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+            return myRandomColor;
+        }
+        let color = generateRandomCode()
+
+        for(let i=0; i<26; i++){
+            refArr[i] = String.fromCharCode('A'.charCodeAt() + i)
+        }
+
+        // add event to reflector keyboard
+        let reflectorClick = (r)=>{
+            tmp[tmp.length] = r
+            if(tmp.length == 2){
+                let n1 = tmp[0].charCodeAt()-'A'.charCodeAt()
+                let n2 = tmp[1].charCodeAt()-'A'.charCodeAt() 
+                refArr[n1] = tmp[1]
+                refArr[n2] = tmp[0]
+
+                console.log(tmp)
+                tmp = []
+                console.log(refArr)
+
+                color = generateRandomCode()
+            }
+        }
+
+        for(let i=0; i<reflector.children.length; i++){
+            for(let j=0; j<reflector.children[i].childElementCount; j++){
+                reflector.children[i].children[j].addEventListener('click', ()=>{
+                    reflector.children[i].children[j].style.backgroundColor = color
+                    reflectorClick(reflector.children[i].children[j].innerText)
+                })
+            }
+        }
+
+
+
+        // 
+ 
     </script>
 </html>
