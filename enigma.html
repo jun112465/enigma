@@ -416,6 +416,58 @@
             }
         }
 
+
+        // transform
+        let transform = (p)=>{
+            let rotorTransform = (param, ptr1, ptr2)=>{
+                param = param.charCodeAt()-'A'.charCodeAt()
+                let diff = param > ptr1 ? param - ptr1 : 26-(ptr1-param)
+                return String.fromCharCode('A'.charCodeAt() + (ptr2+diff)%26)
+            }
+            // p는 변환이 필요한 글자
+
+            //로터 3,2,1 순서로 변횐된다
+            // rotor3
+            p = rotorTransform(p, 0, ptr_r3)
+            console.log(p)
+            // rotor2
+            p = rotorTransform(p, ptr_r3, ptr_r2)
+            console.log(p)
+            // rotor1
+            p = rotorTransform(p, ptr_r2, ptr_r1)
+            console.log(p)
+
+            // 반사
+            p = p.charCodeAt() - 'A'.charCodeAt()
+            p = refArr[p]
+
+            // rotor1
+            p = rotorTransform(p, ptr_r1, ptr_r2)
+            console.log(p)
+            // rotor2
+            p = rotorTransform(p, ptr_r2, ptr_r3)
+            console.log(p)
+            //rotor3
+            p = rotorTransform(p, ptr_r3, 0)
+            console.log(p)
+
+            p = p.charCodeAt() - 'A'.charCodeAt()
+            return refArr[p]
+        }
+
+        // after transform rotate
+        let rotate = ()=>{
+            ptr_r3 += 1
+            if (ptr_r3 == 26){
+                ptr_r2 += 1
+                ptr_r3 %= 26
+            }
+            if (ptr_r2 == 26){
+                ptr_r1 += 1
+                ptr_r1 %= 26
+            }
+        }
+
         // lamp 
         let lamp = document.getElementById('lamp')
         for(let i=0; i<lamp.children.length; i++){
@@ -428,15 +480,20 @@
         for(let i=0; i<input.children.length; i++){
             for(let j=0; j<input.children[i].childElementCount; j++){
                 let p = input.children[i].children[j].innerText;
-                let lampBtn = document.getElementById(p)
+                let lampBtn
 
                 input.children[i].children[j].addEventListener('mousedown', ()=>{
                     input.children[i].children[j].style.backgroundColor = 'grey'
+                    // console.log(transform(p))
+                    lampBtn = document.getElementById(transform(p))
                     lampBtn.style.backgroundColor = 'orange'
                 })
                 input.children[i].children[j].addEventListener('mouseup', ()=>{
                     input.children[i].children[j].style.backgroundColor = 'white'
                     lampBtn.style.backgroundColor = 'lemonchiffon'
+
+                    rotate()
+                    update()
                 })
             }
         }
